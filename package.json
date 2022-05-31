@@ -25,6 +25,9 @@
     "mongoose": "^6.3.4"
   },
   "engines": {
-    "node" : "16.13.1"
+    "node": "16.13.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }
