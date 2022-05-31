@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 // check if user is authenticated
 const isAuthenticated = (req, res, next) => {
   try {
-    if (req?.cookies?.token) {
-      const token = req.cookies?.token;
+    if (req?.headers?.token) {
+      const token = req.headers?.token;
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           throw {
@@ -31,8 +31,8 @@ const isAuthenticated = (req, res, next) => {
 
 const isAdmin = (req, res, next) => {
   try {
-    if (req.cookies.token) {
-      const token = req.cookies.token;
+    if (req.headers.token) {
+      const token = req.headers?.token;
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           throw {
@@ -64,8 +64,8 @@ const isAdmin = (req, res, next) => {
 
 const isDonor = (req, res, next) => {
   try {
-    if (req.cookies.token) {
-      const token = req.cookies.token;
+    if (req.headers.token) {
+      const token = req.headers?.token;
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           throw {
@@ -97,8 +97,8 @@ const isDonor = (req, res, next) => {
 
 const isVisitor = (req, res, next) => {
   try {
-    if (req.cookies.token) {
-      const token = req.cookies.token;
+    if (req.headers.token) {
+      const token = req.headers?.token;
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           throw {
@@ -130,8 +130,8 @@ const isVisitor = (req, res, next) => {
 
 const isNotVisitor = (req, res, next) => {
   try {
-    if (req.cookies.token) {
-      const token = req.cookies.token;
+    if (req.headers.token) {
+      const token = req.headers?.token;
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           throw {

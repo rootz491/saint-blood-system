@@ -4,38 +4,22 @@ const Donor = require('../schema/donor');
 exports.signin = async (req, res) => {
   try {
     const { name, bloodGroupType, bloodGroupSign } = req.body;
-    const token = jwt.sign({ name, bloodGroupSign, bloodGroupSign, role: 'donor' }, process.env.JWT_SECRET, { expiresIn: '1d' });
-    res.cookie('token', token, {
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24, // 1 week
-      sameSite: true,
-      secure: false,
-      signed: true
-    });
-    res.status(200).json({ message: "User logged in" });
+    const token = jwt.sign({ name, bloodGroupSign, bloodGroupType, role: 'visitor' }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    res.status(200).json({ message: "User logged in", token });
   } catch (error) {
     console.log(error);
-    res.status(error.status).json({ message: error.message });
-  }
-}
-
-exports.signout = async (req, res) => {
-  try {
-    res.clearCookie('token');
-    res.status(200).json({ message: "User logged out" });
-  } catch (error) {
-    console.log(error);
-    res.status(error.status).json({ message: error.message });
+    res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
   }
 }
 
 exports.getDonors = async (req, res) => {
   try {
+    res.send('getDonors');  
     const bgType = req.body.bloodGroupType;
     const bgSign = req.body.bloodGroupSign;
-    let donors;
+    let donors = null;
     if (bgType === 'AB') {  //  AB <-- all
-      donors = await Donor.find({}).select('name email age weight');
+      donors = await Donor.find({bloodGroupSign: bgSign}).select('name email age weight');
     } else if (bgType === 'O') {  //  O <-- O
       donors = await Donor.find({
         bloodGroupType: bgType
@@ -46,7 +30,8 @@ exports.getDonors = async (req, res) => {
           bloodGroupType: bgType
         }, {
           bloodGroupType: 'O'
-        }]
+        }],
+        bloodGroupSign: bgSign
       }).select('name email age weight');
     } else if (bgType === 'B') {  //  B <-- B,O
       donors = await Donor.find({
@@ -54,7 +39,8 @@ exports.getDonors = async (req, res) => {
           bloodGroupType: bgType
         }, {
           bloodGroupType: 'O'
-        }]
+        }],
+        bloodGroupSign: bgSign
       }).select('name email age weight');
     } else {
       throw {
@@ -65,7 +51,7 @@ exports.getDonors = async (req, res) => {
     res.status(200).json({ donors });
   } catch (error) {
     console.log(error);
-    res.status(error.status).json({ message: error.message });
+    res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
   }
 }
 
@@ -77,6 +63,6 @@ exports.getDonor = async (req, res) => {
     res.status(200).json({ donor });
   } catch (error) {
     console.log(error);
-    res.status(error.status).json({ message: error.message });
+    res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
   }
 }

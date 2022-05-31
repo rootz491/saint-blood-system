@@ -1,4 +1,5 @@
 const Admin = require('../schema/admin')
+const Donor = require('../schema/donor');
 const jwt = require('jsonwebtoken');
 
 exports.signup = async (req, res) => {
@@ -49,7 +50,7 @@ exports.signup = async (req, res) => {
 		res.status(201).json({ message: "admin created" });
 	} catch (error) {
 		console.log(error);
-		res.status(error.status).json({ message: error.message });
+		res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
 	}
 }
 
@@ -75,21 +76,12 @@ exports.login = async (req, res) => {
 				message: "Invalid password"
 			}
 		}
-		const token = jwt.sign({ id: user._id, role: 'admin' }, process.env.JWT_SECRET, '24h');
+		const token = jwt.sign({ id: user._id, role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
-		//	set cookie
-		res.cookie('token', token, {
-			httpOnly: true,
-			maxAge: 1000 * 60 * 60 * 24,
-			sameSite: true,
-			secure: false,
-			signed: true
-		});
-
-		res.status(200).json({ message: "admin logged in" });
+		res.status(200).json({ message: "admin logged in", token });
 	} catch (error) {
 		console.log(error);
-		res.status(error.status).json({ message: error.message });
+		res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
 	}
 }
 
@@ -99,7 +91,7 @@ exports.showDonors = async (req, res) => {
     res.status(200).json({ donors });
   } catch (error) {
     console.log(error);
-    res.status(error.status).json({ message: error.message });
+    res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
   }
 }
 
@@ -116,16 +108,6 @@ exports.deleteDonor = async (req, res) => {
     res.status(200).json({ message: "Donor deleted" });
   } catch (error) {
     console.log(error);
-    res.status(error.status).json({ message: error.message });
+    res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
   }
-}
-
-exports.logout = async (req, res) => {
-	try {
-		res.clearCookie('token');
-		res.status(200).json({ message: "admin logged out" });
-	} catch (error) {
-		console.log(error);
-		res.status(error.status).json({ message: error.message });
-	}
 }

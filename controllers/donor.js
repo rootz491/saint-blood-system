@@ -103,7 +103,7 @@ exports.signup = async (req, res) => {
 		res.status(201).json({ message: "User created" });
 	} catch (error) {
 		console.log(error);
-		res.status(error.status).json({ message: error.message });
+		res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
 	}
 }
 
@@ -131,29 +131,10 @@ exports.login = async (req, res) => {
 		}
 		const token = jwt.sign({ id: user._id, role: 'donor' }, process.env.JWT_SECRET, '24h');
 
-		//	set cookie
-		res.cookie('token', token, {
-			httpOnly: true,
-			maxAge: 1000 * 60 * 60 * 24,
-			sameSite: true,
-			secure: false,
-			signed: true
-		});
-
-		res.status(200).json({ message: "User logged in" });
+		res.status(200).json({ message: "User logged in", token });
 	} catch (error) {
 		console.log(error);
-		res.status(error.status).json({ message: error.message });
-	}
-}
-
-exports.logout = async (req, res) => {
-	try {
-		res.clearCookie('token');
-		res.status(200).json({ message: "User logged out" });
-	} catch (error) {
-		console.log(error);
-		res.status(error.status).json({ message: error.message });
+		res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
 	}
 }
 
@@ -163,7 +144,7 @@ exports.getUser = async (req, res) => {
 		res.status(200).json({ user });
 	} catch (error) {
 		console.log(error);
-		res.status(error.status).json({ message: error.message });
+		res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
 	}
 }
 
@@ -212,6 +193,6 @@ exports.updateUser = async (req, res) => {
 		res.status(200).json({ message: "User updated" });
 	} catch (error) {
 		console.log(error);
-		res.status(error.status).json({ message: error.message });
+		res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
 	}
 }
