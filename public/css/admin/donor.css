@@ -1,0 +1,56 @@
+
+
+.profileMain {
+  padding: 2em 0 0 5em; 
+}
+
+.profileMain h1{
+  color: #212121;
+}
+
+.profileMain p {
+  color: #454545;
+}
+img{
+  width: 500px;
+}
+
+.profileBody {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 7em;
+}
+
+.profileSummary{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #454545;
+}
+
+.contentText{
+  color: #212121;
+  font-weight: 500;
+}
+
+.button {
+  background-color: #ff4848;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.buttonContainer {
+  display: flex; 
+  justify-content:center; 
+  margin-top: 1em;
+}
+

@@ -1,0 +1,53 @@
+form {
+  display: flex;
+  max-width: 600px;
+  background-color: #FAFAFA;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  gap: 30px;
+  flex-direction: column;
+  box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.areaInput {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.areaInput input {
+  width: 400px;
+  padding: 2px 8px;
+}
+
+.buttonContainer .button {
+  padding: 8px 0;
+  width: 8em;
+  color: white;
+  background-color: #6C63FF;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.heroContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15vh;
+  gap: 80px;
+}
+
+img {
+  width: 300px;
+  margin-top: 8em;
+}
+
+h1 {
+  padding:2em 0 0 5em ;
+  font-size: 24px;
+}

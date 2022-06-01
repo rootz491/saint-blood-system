@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/public/css/base.css">
+  <link rel="stylesheet" href="/public/css/admin/dashboard.css">
   <title><%= title %></title>
 </head>
 <body>
@@ -14,9 +15,9 @@
     <h1><%= title %></h1>
 
     <div class="donors">
-        <h1>Donors</h1>
+        
     </div>
-
+    <div  style="position:absolute"> <%- include('../common/footer')  -%> </>
   </div>
 
   <script>
@@ -48,6 +49,6 @@
     }
   </script>
   
-  <%- include('../common/footer') -%>
+  
 </body>
 </html>

@@ -5,20 +5,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/public/css/base.css">
+  <link rel="stylesheet" href="/public/css/admin/donor.css">
   <title><%= title %></title>
 </head>
 <body>
-  <div class="container">
-    <h1><%= title %></h1>
+  <div class="container"></div>
 
-    <div id="profile">
-
+    <div id="profile" class="profile">
     </div>
 
-    <div style="display: flex;">
-
-      <button id="delete" style="margin: auto; color: white; background: red; cursor: pointer; border: none; padding: 5px 9px">
-        DELETE ACCOUNT
+    <div class="buttonContainer">
+      <button id="delete" class="button" >
+        Delete Account
       </button>
 
     </div>
@@ -38,14 +36,22 @@
         .then(data => {
           console.log(data.user);
           document.getElementById('profile').innerHTML = `
-            <h3>Name: ${data.user.name}</h3>
-            <p>email: ${data.user.email}</p>
-            <p>Weight: ${data.user.weight}</p>
-            <p>Age: ${data.user.age}</p>
-            <p>Phone Number: ${data.user.phone}</p>
-            <p>Address: ${data.user.address}</p>
-            <p>Vistors: ${data.user.visitors}</p>
-            <p>Blood Group: ${data.user.bloodGroupSign} ${data.user.bloodGroupType}</p>
+           <div class="profileMain"> 
+           <h1> ${data.user.name}</h1>
+            <p> ${data.user.email}</p>
+          </div>
+          <div class="profileBody">
+            <img src="/public/media/doggie.svg" alt="donorProfile">
+            
+          <div class="profileSummary">
+            <p><span class="contentText">Weight:</span> ${data.user.weight} Kg</p>
+            <p><span class="contentText">Age:</span> ${data.user.age} Years</p>
+            <p><span class="contentText">Phone Number:</span> ${data.user.phone}</p>
+            <p><span class="contentText">Address:</span> ${data.user.address}</p>
+            <p><span class="contentText">Vistors:</span> ${data.user.visitors}</p>
+            <p><span class="contentText">Blood Group:</span> ${data.user.bloodGroupSign} ${data.user.bloodGroupType}</p>
+          </div>
+        </div>
           `;
         })
         .catch(err => {
