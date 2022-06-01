@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/css/base.css">
+  <link rel="stylesheet" href="/public/css/donor.css">
+  <title><%= title %></title>
+</head>
+<body>
+  <div class="container">
+    <h1><%= title %></h1>
+
+    <div id="profile">
+
+    </div>
+
+    <script>
+      if (localStorage.getItem('token') == null) {
+        location.href = '/donor/login';
+      } else {
+        fetch('/api/donor/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'token': localStorage?.token
+          }
+        }).then(res => res.json())
+          .then(data => {
+            console.log(data.user);
+            document.getElementById('profile').innerHTML = `
+              <h3>Name: ${data.user.name}</h3>
+              <p>email: ${data.user.email}</p>
+              <p>Weight: ${data.user.weight}</p>
+              <p>Age: ${data.user.age}</p>
+              <p>Phone Number: ${data.user.phone}</p>
+              <p>Address: ${data.user.address}</p>
+              <p>Vistors: ${data.user.visitors}</p>
+              <p>Blood Group: ${data.user.bloodGroupSign} ${data.user.bloodGroupType}</p>
+            `;
+          })
+          .catch(err => {
+            console.log(err);
+            location.href = '/donor/login';
+          });
+      }
+    </script>
+  </div>
+  <%- include('../common/footer') -%>
+</body>
+</html>

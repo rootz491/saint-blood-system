@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { isVisitor, isAuthenticated } = require('../middleware');
+const { isVisitor, isAuthenticated } = require('../../middleware');
 const {
   getDonor, signin, getDonors
-} = require('../controllers/visitor');
+} = require('../../controllers/visitor');
 
 //  @route   POST api/visitor/signin
 //  @desc    Login visitor

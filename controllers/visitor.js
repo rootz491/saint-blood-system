@@ -14,12 +14,13 @@ exports.signin = async (req, res) => {
 
 exports.getDonors = async (req, res) => {
   try {
-    res.send('getDonors');  
     const bgType = req.body.bloodGroupType;
     const bgSign = req.body.bloodGroupSign;
     let donors = null;
     if (bgType === 'AB') {  //  AB <-- all
-      donors = await Donor.find({bloodGroupSign: bgSign}).select('name email age weight');
+      donors = await Donor.find({
+        bloodGroupSign: bgSign
+      }).select('name email age weight');
     } else if (bgType === 'O') {  //  O <-- O
       donors = await Donor.find({
         bloodGroupType: bgType

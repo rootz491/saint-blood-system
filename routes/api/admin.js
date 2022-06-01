@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { isAdmin, isAuthenticated } = require('../middleware');
+const { isAdmin, isAuthenticated } = require('../../middleware');
 const {
   deleteDonor, login, showDonors, signup
-} = require('../controllers/admin');
+} = require('../../controllers/admin');
 
 //  @route   GET api/admin/donors
 //  @desc    Get all donors
