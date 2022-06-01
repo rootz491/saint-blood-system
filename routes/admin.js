@@ -9,7 +9,7 @@ const {
 router.get('/donors', isAuthenticated, isAdmin, showDonors);
 
 //  @route   POST api/admin/login
-//  @desc    Login admin
+//  @desc    Login adminsahi i
 //  @body    { email, password }
 router.post('/login', login);
 
