@@ -9,9 +9,7 @@
 </head>
 <body>
 
-
   <div class="container">
-
 
     <h1><%= title %></h1>
     <form id="login-form" action="/api/donor/login" method="post">
@@ -26,7 +24,7 @@
       </div>
     </form>
 
-  </div> 
+  </div>
 
   <script>
     document.getElementById('login-form').onsubmit = e => {
@@ -41,9 +39,8 @@
           password: e.target.password.value
         })
       }).then(res => res.json()).then(data => {
-          console.log(data);
           localStorage.setItem('token', data.token);
-          // window.location.href = '/donor/profile';
+          window.location.href = '/donor/profile';
       });
     };
   </script>

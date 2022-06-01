@@ -14,17 +14,18 @@ exports.signin = async (req, res) => {
 
 exports.getDonors = async (req, res) => {
   try {
-    const bgType = req.body.bloodGroupType;
-    const bgSign = req.body.bloodGroupSign;
+    const bgType = req.user.bloodGroupType;
+    const bgSign = req.user.bloodGroupSign;
+    console.log(bgType, bgSign);
     let donors = null;
     if (bgType === 'AB') {  //  AB <-- all
       donors = await Donor.find({
         bloodGroupSign: bgSign
-      }).select('name email age weight');
+      }).select('name email age weight bloodGroupSign bloodGroupType');
     } else if (bgType === 'O') {  //  O <-- O
       donors = await Donor.find({
         bloodGroupType: bgType
-      }).select('name email age weight');
+      }).select('name email age weight bloodGroupSign bloodGroupType');
     } else if (bgType === 'A') {  //  A <-- A,O
       donors = await Donor.find({
         $or: [{
@@ -33,7 +34,7 @@ exports.getDonors = async (req, res) => {
           bloodGroupType: 'O'
         }],
         bloodGroupSign: bgSign
-      }).select('name email age weight');
+      }).select('name email age weight bloodGroupSign bloodGroupType');
     } else if (bgType === 'B') {  //  B <-- B,O
       donors = await Donor.find({
         $or: [{
@@ -42,7 +43,7 @@ exports.getDonors = async (req, res) => {
           bloodGroupType: 'O'
         }],
         bloodGroupSign: bgSign
-      }).select('name email age weight');
+      }).select('name email age weight bloodGroupSign bloodGroupType');
     } else {
       throw {
         status: 500,
@@ -58,8 +59,8 @@ exports.getDonors = async (req, res) => {
 
 exports.getDonor = async (req, res) => {
   try {
-    const donor = await Donor.findById(req.params.id).select('name email age weight address phone');
-    donor.visitors += 1;
+    const donor = await Donor.findOne({_id: req.params.id}).select('-password -__v');
+    donor.visitors = donor.visitors + 1;
     await donor.save();
     res.status(200).json({ donor });
   } catch (error) {

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/css/base.css">
+  <title><%= title %></title>
+</head>
+<body>
+  <div class="container">
+    <h1><%= title %></h1>
+
+    <div id="profile">
+
+    </div>
+
+  </div>
+  <script>
+    if (localStorage.getItem('token') == null) {
+      location.href = '/visitor/signin';
+    } else {
+      fetch('/api/visitor/<%= id %>', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': localStorage?.token
+        }
+      }).then(res => res.json())
+        .then(data => {
+          console.log(data.donor);
+          document.getElementById('profile').innerHTML = `
+            <h3>Name: ${data.donor.name}</h3>
+            <p>email: ${data.donor.email}</p>
+            <p>Weight: ${data.donor.weight}</p>
+            <p>Age: ${data.donor.age}</p>
+            <p>Phone Number: ${data.donor.phone}</p>
+            <p>Address: ${data.donor.address}</p>
+            <p>Vistors: ${data.donor.visitors}</p>
+            <p>Blood Group: ${data.donor.bloodGroupSign} ${data.donor.bloodGroupType}</p>
+          `;
+        })
+        .catch(err => {
+          console.log(err);
+          // location.href = '/error?message=Account could not be found';
+        });
+    }
+  </script>
+
+  <%- include('../common/footer') -%>
+</body>
+</html>

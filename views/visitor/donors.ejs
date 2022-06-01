@@ -5,26 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/public/css/base.css">
-  <link rel="stylesheet" href="/public/css/admin/dashboard.css">
   <title><%= title %></title>
 </head>
 <body>
 
   <div class="container">
-
     <h1><%= title %></h1>
-
-    <div class="donors">
-        
-    </div>
-    <div  style="position:absolute"> <%- include('../common/footer')  -%> </>
+    <div class="donors"></div>
   </div>
+
+  
 
   <script>
     if (localStorage.getItem('token') == null) {
-      location.href = '/admin/login';
+      location.href = '/visitor/signin';
     } else {
-      fetch('/api/admin/donors', {
+      fetch('/api/visitor/donors', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -32,22 +28,24 @@
         }
       }).then(res => res.json())
         .then(data => {
+          console.log(data);
 
           for (const i in data.donors) {{
             const donor = data.donors[i];
             const donorEl = document.createElement('div');
             donorEl.className = 'donor';
-            donorEl.innerHTML = `<a href="/admin/donor/${donor._id}"><h2>${donor.name}</h2></a>`;
+            donorEl.innerHTML = `<a href="/visitor/${donor._id}"><h2>${donor.name}</h2></a>`;
             document.querySelector('.donors').appendChild(donorEl);
           }}
+
         })
         .catch(err => {
           console.log(err);
-          location.href = '/admin/login';
         });
     }
   </script>
   
+  <%- include('../common/footer') -%>
   
 </body>
 </html>
