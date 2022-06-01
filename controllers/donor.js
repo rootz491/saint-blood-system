@@ -135,7 +135,7 @@ exports.login = async (req, res) => {
 				message: "Invalid password"
 			}
 		}
-		const token = jwt.sign({ id: user._id, role: 'donor' }, process.env.JWT_SECRET, '24h');
+		const token = jwt.sign({ id: user._id, role: 'donor' }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
 		res.status(200).json({ message: "User logged in", token });
 	} catch (error) {
@@ -147,6 +147,16 @@ exports.login = async (req, res) => {
 exports.getUser = async (req, res) => {
 	try {
 		const user = await Donor.findById(req.user.id).select('-password -__v');
+		res.status(200).json({ user });
+	} catch (error) {
+		console.log(error);
+		res.status(error?.status ?? 400).json({ message: error?.message ?? "Something went wrong" });
+	}
+}
+
+exports.getUserById = async (req, res) => {
+	try {
+		const user = await Donor.findById(req.params.id).select('-password -__v');
 		res.status(200).json({ user });
 	} catch (error) {
 		console.log(error);

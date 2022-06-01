@@ -1,12 +1,16 @@
 const router = require('express').Router();
-const { isAuthenticated, isDonor } = require('../middleware');
+const { isAuthenticated, isDonor, isAdmin } = require('../../middleware');
 const {
-  getUser, login, signup, updateUser
-} = require('../controllers/donor');
+  getUser, login, signup, updateUser, getUserById
+} = require('../../controllers/donor');
 
 //  @route   GET api/donor/
 //  @desc    Get current donor's info
 router.get('/', isAuthenticated, isDonor, getUser);
+
+//  @route   POST api/donor/:id
+//  @desc    get donor's info
+router.get('/:id', isAdmin, getUserById);
 
 //  @route   POST api/donor/login
 //  @desc    Login donor
