@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/public/css/base.css">
+  <link rel="stylesheet" href="/public/css/visitor/login.css">
   <title><%= title %></title>
 </head>
 <body>
@@ -12,27 +13,42 @@
   <div class="container">
 
     <h1><%= title %></h1>
+
     <form id="login-form" action="/api/visitor/signin" method="post">
-      <label for="name">Full Name:</label>
-      <input type="text" name="name" id="name">
-      <br>
-      <label for="bloodGroupSign">blood Group Sign:</label>
-      <select name="bloodGroupSign" id="bloodGroupSign" required>
-        <option value="+">+</option>
-        <option value="-">-</option>
-      </select>
-      <br>
-      <label for="bloodGroupType">blood Group Type:</label>
-      <select name="bloodGroupType" id="bloodGroupType" required>
-        <option value="A">A</option>
-        <option value="B">B</option>
-        <option value="AB">AB</option>
-        <option value="O">O</option>
-      </select>
-      <br>
-      <div style="display: flex; margin-top: 3px;">
-        <input style="margin: auto;" type="submit" value="Login">
+
+      <img src="/public/media/loginvisitor.svg" alt="loginImage">
+
+      <div class="form">
+        <div class="input areaInput">
+          <label for="name">Full Name:</label>
+          <input type="text" placeholder="zerotwo" name="name" id="name">
+        </div>
+        
+        <div class="bloodgroup">
+          <div class="bloodgroupsign input areaInput">
+            <label for="bloodGroupSign">blood Group Sign:</label>
+            <select name="bloodGroupSign" id="bloodGroupSign" required>
+              <option value="+">+</option>
+              <option value="-">-</option>
+            </select>
+          </div>
+        
+          <div class="bloodgrouptype input areaInput">
+            <label for="bloodGroupType">blood Group Type:</label>
+            <select name="bloodGroupType" id="bloodGroupType" required>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="AB">AB</option>
+              <option value="O">O</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="buttoncontainer">
+          <input class="button" type="submit" value="Login">
+        </div>
       </div>
+
     </form>
 
   </div>

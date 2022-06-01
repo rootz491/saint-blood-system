@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/public/css/base.css">
+  <link rel="stylesheet" href="/public/css/visitor/donor.css">
   <title><%= title %></title>
 </head>
 <body>
   <div class="container">
-    <h1><%= title %></h1>
 
     <div id="profile">
 
@@ -30,14 +30,21 @@
         .then(data => {
           console.log(data.donor);
           document.getElementById('profile').innerHTML = `
-            <h3>Name: ${data.donor.name}</h3>
-            <p>email: ${data.donor.email}</p>
-            <p>Weight: ${data.donor.weight}</p>
-            <p>Age: ${data.donor.age}</p>
-            <p>Phone Number: ${data.donor.phone}</p>
-            <p>Address: ${data.donor.address}</p>
-            <p>Vistors: ${data.donor.visitors}</p>
-            <p>Blood Group: ${data.donor.bloodGroupSign} ${data.donor.bloodGroupType}</p>
+            <div class="profileMain">
+            <h1> ${data.donor.name}</h1>
+             <p> ${data.donor.email}</p>
+           </div>
+           <div class="profileBody">
+             <img src="/public/media/doggie.svg" alt="donorProfile">
+             
+           <div class="profileSummary">
+             <p><span class="contentText">Weight:</span> ${data.donor.weight} Kg</p>
+             <p><span class="contentText">Age:</span> ${data.donor.age} Years</p>
+             <p><span class="contentText">Phone Number:</span> ${data.donor.phone}</p>
+             <p><span class="contentText">Address:</span> ${data.donor.address}</p>
+             <p><span class="contentText">Vistors:</span> ${data.donor.visitors}</p>
+             <p><span class="contentText">Blood Group:</span> ${data.donor.bloodGroupSign} ${data.donor.bloodGroupType}</p>
+           </div>
           `;
         })
         .catch(err => {
