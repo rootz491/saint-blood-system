@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/css/base.css">
+  <title><%= title %></title>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1><%= title %></h1>
+    <form id="login-form" action="/api/visitor/signin" method="post">
+      <label for="name">Full Name:</label>
+      <input type="text" name="name" id="name">
+      <br>
+      <label for="bloodGroupSign">blood Group Sign:</label>
+      <select name="bloodGroupSign" id="bloodGroupSign" required>
+        <option value="+">+</option>
+        <option value="-">-</option>
+      </select>
+      <br>
+      <label for="bloodGroupType">blood Group Type:</label>
+      <select name="bloodGroupType" id="bloodGroupType" required>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="AB">AB</option>
+        <option value="O">O</option>
+      </select>
+      <br>
+      <div style="display: flex; margin-top: 3px;">
+        <input style="margin: auto;" type="submit" value="Login">
+      </div>
+    </form>
+
+  </div>
+
+  <script>
+    document.getElementById('login-form').onsubmit = e => {
+      e.preventDefault();
+      fetch('/api/visitor/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: e.target.name.value,
+          bloodGroupType: e.target.bloodGroupType.value,
+          bloodGroupSign: e.target.bloodGroupSign.value
+        })
+      }).then(res => res.json()).then(data => {
+          alert(data.message);
+          localStorage.setItem('token', data.token);
+          window.location.href = '/visitor/donors';
+      });
+    };
+  </script>
+
+  <%- include('../common/footer') -%>
+</body>
+</html>

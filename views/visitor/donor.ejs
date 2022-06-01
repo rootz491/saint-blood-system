@@ -8,22 +8,19 @@
   <title><%= title %></title>
 </head>
 <body>
-
   <div class="container">
-
     <h1><%= title %></h1>
 
-    <div class="donors">
-        <h1>Donors</h1>
+    <div id="profile">
+
     </div>
 
   </div>
-
   <script>
     if (localStorage.getItem('token') == null) {
       location.href = '/visitor/signin';
     } else {
-      fetch('/api/visitor/donors', {
+      fetch('/api/visitor/<%= id %>', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -31,21 +28,25 @@
         }
       }).then(res => res.json())
         .then(data => {
-
-          for (const i in data.donors) {{
-            const donor = data.donors[i];
-            const donorEl = document.createElement('div');
-            donorEl.className = 'donor';
-            donorEl.innerHTML = `<a href="/admin/donor/${donor._id}"><h2>${donor.name}</h2></a>`;
-            document.querySelector('.donors').appendChild(donorEl);
-          }}
+          console.log(data.donor);
+          document.getElementById('profile').innerHTML = `
+            <h3>Name: ${data.donor.name}</h3>
+            <p>email: ${data.donor.email}</p>
+            <p>Weight: ${data.donor.weight}</p>
+            <p>Age: ${data.donor.age}</p>
+            <p>Phone Number: ${data.donor.phone}</p>
+            <p>Address: ${data.donor.address}</p>
+            <p>Vistors: ${data.donor.visitors}</p>
+            <p>Blood Group: ${data.donor.bloodGroupSign} ${data.donor.bloodGroupType}</p>
+          `;
         })
         .catch(err => {
           console.log(err);
+          // location.href = '/error?message=Account could not be found';
         });
     }
   </script>
-  
+
   <%- include('../common/footer') -%>
 </body>
 </html>
