@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>saint blood system</title>
+  <link rel="stylesheet" href="/public/css//base.css">
+  <link rel="stylesheet" href="/public/css/index.css">
+</head>
+<body>
+
+    <%- include("./common/nav.ejs") -%>
+    
+    <div class="herocontent"> 
+      <h2 class="welcome">Weclome to</h2>
+      <h1 class="herotitle">Saint <span class="blood">Blood</span> System</h1>
+    </div>
+
+    <div class="wrapper">
+      <div class="container1">
+
+        <div class="roles donor">
+          <h2>Donor</h2>
+          <p>
+            Donate blood to save lives.
+          </p>
+          <div class="buttoncontainer">
+            <input class="button" type="submit" value="Register" id="donor">
+          </div>
+        </div>
+
+        <div class="roles visitor">
+          <h2>Visitor</h2>
+          <p>
+            Find blood donors by logging in as a visitor.
+          </p>
+          <div class="buttoncontainer">
+            <input class="button" type="submit" value="Login" id="visitor">
+          </div>
+        </div>
+      </div>
+      <div class="container2">
+        <div class="roles admin">
+          <h2>Admin</h2>
+          <p>
+            Admin is the one who owns the site. If you're admin, you can login here.
+          </p>
+          <div class="buttoncontainer">
+            <input class="button" type="submit" value="Login" id="admin">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./common/footer') -%>
+
+    <script>
+
+      document.getElementById('donor').onclick = e => {
+        e.preventDefault();
+        window.location.href = '/donor/signup';
+      }
+
+      document.getElementById('visitor').onclick = e => {
+        e.preventDefault();
+        window.location.href = '/visitor/signin';
+      }
+
+      document.getElementById('admin').onclick = e => {
+        e.preventDefault();
+        window.location.href = '/admin/login';
+      }
+    </script>
+</body>
+</html>

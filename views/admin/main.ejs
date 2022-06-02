@@ -9,7 +9,7 @@
   <title><%= title %></title>
 </head>
 <body>
-
+  <%- include("../common/nav") -%>
   <div class="container">
 
     <h1><%= title %></h1>
@@ -17,7 +17,14 @@
     <div class="donors">
         
     </div>
-    <div  style="position:absolute"> <%- include('../common/footer')  -%> </div>
+
+    <div class="buttoncontainer">
+      <input class="button" type="submit" value="logout" id="logout">
+    </div>
+
+    <div style=" display: flex; padding: 1em; justify-content: center;">
+      <h4>Made By Saint ❤️</h4>
+    </div>
 
   <script>
     if (localStorage.getItem('token') == null) {
@@ -45,6 +52,11 @@
           location.href = '/admin/login';
         });
     }
+
+    document.getElementById('logout').addEventListener('click', () => {
+        localStorage.removeItem('token');
+        location.href = '/admin/login';
+      });
   </script>
   
   

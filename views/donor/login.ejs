@@ -9,7 +9,7 @@
   <title>Donor Login</title>
 </head>
 <body>
-
+  <%- include("../common/nav") -%>
   <div class="container">
 
     <h1><%= title %></h1>
@@ -31,6 +31,7 @@
   
         <div class="buttonContainer">
           <input class="button" type="submit" value="Login">
+          <a href="/donor/signup" style="text-decoration: none; color: cornflowerblue;" class="register">Register here</a>
         </div>
   
       </form>

@@ -7,3 +7,25 @@
   box-sizing: border-box;
 }
 
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav ul{
+  padding: 20px 14px;
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+}
+
+li a {
+  text-decoration: none;
+  color: #212121;
+  padding: 10px;
+  font-size: 20px;
+  
+}

@@ -35,3 +35,20 @@ box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
   color: #212121;
 }
 
+.buttoncontainer {
+  display: flex; 
+  justify-content:center; 
+  margin-top: 1em;
+}
+
+.buttoncontainer .button {
+  padding: 5px 0;
+  width: 8em;
+  color: white;
+  background-color: #ff4848;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}

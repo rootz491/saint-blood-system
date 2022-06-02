@@ -9,12 +9,17 @@
   <title><%= title %></title>
 </head>
 <body>
+  <%- include("../common/nav") -%>
   <div class="container">
 
     <div id="profile">
 
     </div>
 
+    <div class="buttoncontainer">
+      <input class="button" type="submit" value="logout" id="logout">
+    </div>
+    
   </div>
   <script>
     if (localStorage.getItem('token') == null) {
@@ -52,6 +57,11 @@
           // location.href = '/error?message=Account could not be found';
         });
     }
+
+    document.getElementById('logout').addEventListener('click', () => {
+        localStorage.removeItem('token');
+        location.href = '/visitor/signin';
+      });
   </script>
 
   <%- include('../common/footer') -%>

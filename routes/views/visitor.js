@@ -5,7 +5,7 @@ router.get('/signin', (req, res) => {
 });
 
 router.get('/donors', (req, res) => {
-  res.render('visitor/donors', { title: 'Donors' });
+  res.render('visitor/donors', { title: 'Eligible Donors' });
 })
 
 router.get('/:id', (req, res) => {

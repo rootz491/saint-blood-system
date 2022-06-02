@@ -1,0 +1,71 @@
+.herocontent {
+  line-height: 2.8em;
+  text-align: center;
+  margin-top: 2em;
+  color: #212121;
+}
+
+.herocontent h1{
+  font-size: 3em;
+  color: #454545;
+}
+
+.herocontent span{
+  color: #ff4848;
+}
+
+.button {
+  background-color: #0b61ff;
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #004ddd;
+}
+
+.buttoncontainer {
+  display: flex; 
+  justify-content:center; 
+  margin-top: 1em;
+}
+
+.wrapper {
+  display: grid;
+  gap: 30px;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+.wrapper .container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+
+.wrapper .container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.roles {
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all .5s ease-in-out;
+}
+
+.roles:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(1.1);
+}

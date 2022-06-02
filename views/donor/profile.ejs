@@ -9,13 +9,10 @@
   <title><%= title %></title>
 </head>
 <body>
+  <%- include("../common/nav") -%>
   <div class="container">
 
     <div id="profile">
-    </div>
-
-    <div class="buttoncontainer">
-      <input class="button" type="submit" value="logout" id="logout">
     </div>
 
     <script>
@@ -48,6 +45,10 @@
             <p><span class="contentText">Blood Group:</span> ${data.user.bloodGroupSign} ${data.user.bloodGroupType}</p>
           </div>
         </div>
+        <div class="buttoncontainer">
+      <input class="button" type="submit" value="logout" id="logout">
+      <button class="button" id="update">Edit Profile</button>
+      </div>
             `;
           })
           .catch(err => {
@@ -60,7 +61,24 @@
         localStorage.removeItem('token');
         location.href = '/donor/login';
       });
+
+      // document.getElementById('edit').addEventListener('click', () => {
+      //   // show the modal
+      //   document.getElementById('modal').style.display = 'block';
+      // });
       
+      // document.getElementById('update').addEventListener('click', () => {
+      //   // close the modal and refresh the page to show content 
+        
+      // });
+
+      // // close modal
+      // const close = document.getElementsByClassName('close')[0];
+      // close.addEventListener('click', () => {
+      //   document.getElementById('modal').style.display = 'none';
+      // });
+
+
     </script>
   </div>
   <%- include('../common/footer') -%>

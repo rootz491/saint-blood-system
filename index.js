@@ -16,6 +16,7 @@ app.use('/api/visitor', require('./routes/api/visitor'));
 app.use('/donor', require('./routes/views/donor'));
 app.use('/admin', require('./routes/views/admin'));
 app.use('/visitor', require('./routes/views/visitor'));
+app.use('/', require('./routes/views/index'));
 
 app.use('/error', (req, res) => {
   res.status(400).render('common/error', { title: 'Error', message: req.query.message ?? 'are you lost? contact @rootz491 ⭐️' });

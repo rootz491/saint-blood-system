@@ -9,6 +9,7 @@
   <title><%= title %></title>
 </head>
 <body>
+  <%- include("../common/nav") -%>
   <div class="container"></div>
 
     <div id="profile" class="profile">
@@ -19,6 +20,7 @@
         Delete Account
       </button>
 
+      <input class="button" type="submit" value="logout" id="logout">
     </div>
 
   </div>
@@ -83,6 +85,11 @@
           });
       });
     }
+
+    document.getElementById('logout').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      location.href = '/admin/login';
+    });
   </script>
 
   <%- include('../common/footer') -%>
