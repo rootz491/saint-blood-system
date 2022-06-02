@@ -27,7 +27,7 @@ app.use('*', (req, res) => {
 });
 
 app.listen(process.env.PORT || 1337, async () => {
-  console.log('Server started');
+  console.log('Server started on' + (process.env.PORT || 1337));
   await mongoose.connect(process.env.MONGOOSE_URI, { useNewUrlParser: true, useUnifiedTopology: true });
   console.log('Connected to database');
 });

@@ -67,3 +67,43 @@ h1 {
   padding:1em 0 0 5em ;
   font-size: 24px;
 }
+
+@media only screen and (max-width: 830px) {
+  img {
+    display: none;
+  }
+ 
+}
+
+@media only screen and (max-width: 450px){
+  form {
+    width: 80%;
+    margin: 3em auto;
+    
+  }
+
+  .form {
+    height: 60vh;
+    width: 100%;
+  }
+
+  .buttoncontainer {
+    width: 100%;
+  }
+  .bloodgroup {
+    flex-direction: column;
+    width: 100%;
+  }
+  .areaInput, .areaInput input {
+    width: 100%;
+  }
+  .form {
+    align-items: flex-start ;
+  }
+  h1 {
+    padding: 1em 0 0 0;
+    text-align: center;
+  }
+
+}
+  

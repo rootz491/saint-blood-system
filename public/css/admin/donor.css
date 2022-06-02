@@ -55,3 +55,35 @@ img{
   gap: 10px;
 }
 
+/* responsvie same for donor/profile.. */
+
+@media only screen and (max-width: 930px)  {
+  img {
+    width: 300px;
+    margin-bottom: 7em;
+  }
+}
+
+@media only screen and (max-width: 640px)  {
+  img {
+    display: none;
+  }
+
+  .profileBody {
+    margin-top: 5em;
+    margin-bottom: 7em;
+  }
+
+}
+
+@media only screen and (max-width: 550px) {
+  .profileSummary {
+    margin: 0 2em;
+    width: 100%;
+  }
+  .profileMain {
+    padding: 2em 0 0 0;
+    text-align: center;
+  }
+}
+

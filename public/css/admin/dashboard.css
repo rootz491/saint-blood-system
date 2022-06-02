@@ -53,3 +53,14 @@
     text-align: center;
   }
  
+
+  @media only screen and (max-width: 630px) {
+    .donors {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+    h1 {
+      padding: 1em 0 0 0;
+      text-align: center;
+    }
+  }
