@@ -77,7 +77,10 @@
       // close.addEventListener('click', () => {
       //   document.getElementById('modal').style.display = 'none';
       // });
-
+document.getElementById('logout').addEventListener('click', () => {
+  localStorage.removeItem('token');
+  location.href = '/donor/login';
+});
 
     </script>
   </div>
